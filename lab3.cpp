@@ -9,8 +9,6 @@ void malloc (int n)
 	srand(time(0));
 	float *b = NULL,*c = NULL,*d = NULL;
 	int m=0,k=0,r=0,t=0;
-	c=(float *) malloc(m*sizeof(float));
-	d=(float *) malloc(k*sizeof(float));
 	b=(float *) malloc(n*sizeof(float));
 
 	if ( b == NULL ) // если не удалось выделить память 
@@ -36,6 +34,10 @@ void malloc (int n)
 		}
 
 	}
+
+	c=(float *) malloc(m*sizeof(float));
+	d=(float *) malloc(k*sizeof(float));
+	
 	for(int i=0;i<n;i++){
 		if (b[i]<0)
 		{
