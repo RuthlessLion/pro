@@ -7,10 +7,11 @@ using namespace std;
 void malloc (int n)
 {	
 	srand(time(0));
-	int *b,*c,*d,m=0,k=0;
-	c=(int *) malloc(m*sizeof(int));
-	d=(int *) malloc(k*sizeof(int));
-	b=(int *) malloc(n*sizeof(int));
+	float *b = NULL,*c = NULL,*d = NULL;
+	int m=0,k=0,r=0,t=0;
+	c=(float *) malloc(m*sizeof(float));
+	d=(float *) malloc(k*sizeof(float));
+	b=(float *) malloc(n*sizeof(float));
 
 	if ( b == NULL ) // если не удалось выделить память 
  {  
@@ -23,19 +24,32 @@ void malloc (int n)
 		b[i] = rand()%100-50;
 	}
 
-	for (int i=0;i<n;i++)
+	for (int i=0;i<n;i++)// проверка массива на положительные числа и отрицательные
 	{
 		if (b[i]<0)
 		{
-			d[k] = b[i];
 			k++;
 		}
 		if (b[i]>=0)
 		{
-			c[m] = b[i];
 			m++;
 		}
+
 	}
+	for(int i=0;i<n;i++){
+		if (b[i]<0)
+		{
+			d[t] = b[i];
+			t++;
+		}
+		if (b[i]>=0)
+		{	
+			c[r] = b[i];
+			r++;
+		}
+	}
+		//d[k] = b[i]; 			//c[m] = b[i];
+
 	cout << endl<< "вывод исходного массива: ";
 	for (int i=0;i<n;i++)// вывод исходного массива
 	{
@@ -51,6 +65,9 @@ void malloc (int n)
 	{
 		cout << c[i]<< " ";
 	}
+	free(b);
+	free(d);
+	free(c);
 
 }
 
