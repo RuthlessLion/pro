@@ -8,7 +8,7 @@ void out(int **mass, int m, int n);
 void rand(int **mass, int m, int n);
 void dellmass(int **mass, int m);
 int maxvalue(int **mass,int m, int n, int &max,int &maxi,int &maxj);
-int massC(int **mass,int **massc,int m, int n, int &max,int &maxi,int &maxj);
+void outmassc(int **mass,int **massc,int m, int n, int &max,int &maxi,int &maxj);
 
 int main() {
     setlocale(LC_ALL, "rus");
@@ -19,12 +19,12 @@ int main() {
     for(int i=0;i<m;i++){
         mass[i]=new int[n];}
     int **massc=new int*[m];
-    for(int i=0;i<m;i++){
-        massc[i]=new int[n];}
+    for(int i=0;i<m-1;i++){
+        massc[i]=new int[n-1];}
     rand (mass,m,n);
     out (mass, m,n);
     maxvalue (mass,m,n,max,maxi,maxj);
-    massC(mass,massc,m,n,max,maxi,maxj);
+    outmassc (mass,massc,m,n,max,maxi,maxj);
     dellmass(mass,m);
     system("pause");
     return 0;
@@ -63,17 +63,18 @@ int maxvalue(int **mass,int m, int n, int &max,int &maxi,int &maxj){ // нахо
     }
     cout << "Максимальное значение: "<< max <<" Столбец: "<< maxj+1<< " Строка: "<< maxi+1 <<endl;
 }
-int massC(int **mass,int **massc,int m, int n, int &max,int &maxi,int &maxj){
-    int out = 0;
-    while(out == 0){
-        if (m == maxj) {
-            for (int i = 0; i < m; i++) {
-                for (int j = maxj + 1; j < n - 1; j++) {
-                    massc[i][j] = mass[i][j];
-                    cout << massc[i][j];
-                }
+void outmassc(int **mass,int **massc,int m, int n, int &max,int &maxi,int &maxj) { //вывод массива
+    int _i=0, _j=0;
+    for(int i=0; i<n; i++)
+    {
+        if (i!=maxi)
+        {
+            for(int j=0; j<m; j++)
+            {
+                if (j!=maxj) cout << (massc[_i][_j++]=mass[i][j]) << " ";
             }
-
+            _j = 0;
+            _i++;
+            cout << endl<<endl;5
         }
     }
-}
